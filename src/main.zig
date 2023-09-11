@@ -8,7 +8,7 @@ pub const LittleEndian = struct {
     }
 
     pub fn fromU16ToBytes(v: u16) [2]u8 {
-        return [2]u8{ @truncate(u8, v), @truncate(u8, v >> 8) };
+        return [2]u8{ @as(u8, @truncate(v)), @as(u8, @truncate(v >> 8)) };
     }
 
     pub fn toU32(b: [4]u8) u32 {
@@ -16,7 +16,7 @@ pub const LittleEndian = struct {
     }
 
     pub fn fromU32ToBytes(v: u32) [4]u8 {
-        return [4]u8{ @truncate(u8, v), @truncate(u8, v >> 8), @truncate(u8, v >> 16), @truncate(u8, v >> 24) };
+        return [4]u8{ @as(u8, @truncate(v)), @as(u8, @truncate(v >> 8)), @as(u8, @truncate(v >> 16)), @as(u8, @truncate(v >> 24)) };
     }
 
     pub fn toU64(b: [8]u8) u64 {
@@ -26,8 +26,8 @@ pub const LittleEndian = struct {
 
     pub fn fromU64ToBytes(v: u64) [8]u8 {
         return [8]u8{
-            @truncate(u8, v),       @truncate(u8, v >> 8),  @truncate(u8, v >> 16), @truncate(u8, v >> 24),
-            @truncate(u8, v >> 32), @truncate(u8, v >> 40), @truncate(u8, v >> 48), @truncate(u8, v >> 56),
+            @as(u8, @truncate(v)),       @as(u8, @truncate(v >> 8)),  @as(u8, @truncate(v >> 16)), @as(u8, @truncate(v >> 24)),
+            @as(u8, @truncate(v >> 32)), @as(u8, @truncate(v >> 40)), @as(u8, @truncate(v >> 48)), @as(u8, @truncate(v >> 56)),
         };
     }
 };
@@ -38,7 +38,7 @@ pub const BigEndian = struct {
     }
 
     pub fn fromU16ToBytes(v: u16) [2]u8 {
-        return [2]u8{ @truncate(u8, v >> 8), @truncate(u8, v) };
+        return [2]u8{ @as(u8, @truncate(v >> 8)), @as(u8, @truncate(v)) };
     }
 
     pub fn toU32(b: [4]u8) u32 {
@@ -46,7 +46,7 @@ pub const BigEndian = struct {
     }
 
     pub fn fromU32ToBytes(v: u32) [4]u8 {
-        return [4]u8{ @truncate(u8, v >> 24), @truncate(u8, v >> 16), @truncate(u8, v >> 8), @truncate(u8, v) };
+        return [4]u8{ @as(u8, @truncate(v >> 24)), @as(u8, @truncate(v >> 16)), @as(u8, @truncate(v >> 8)), @as(u8, @truncate(v)) };
     }
 
     pub fn toU64(b: [8]u8) u64 {
@@ -56,8 +56,8 @@ pub const BigEndian = struct {
 
     pub fn fromU64ToBytes(v: u64) [8]u8 {
         return [8]u8{
-            @truncate(u8, v >> 56), @truncate(u8, v >> 48), @truncate(u8, v >> 40), @truncate(u8, v >> 32),
-            @truncate(u8, v >> 24), @truncate(u8, v >> 16), @truncate(u8, v >> 8),  @truncate(u8, v),
+            @as(u8, @truncate(v >> 56)), @as(u8, @truncate(v >> 48)), @as(u8, @truncate(v >> 40)), @as(u8, @truncate(v >> 32)),
+            @as(u8, @truncate(v >> 24)), @as(u8, @truncate(v >> 16)), @as(u8, @truncate(v >> 8)),  @as(u8, @truncate(v)),
         };
     }
 };
