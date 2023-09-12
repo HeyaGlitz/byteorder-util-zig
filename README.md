@@ -28,3 +28,25 @@ const beU64 = BigEndian.toU64(givenU64Bytes); // => 72623859790382856;
 const gotBeU64Bytes = BigEndian.fromU64ToBytes(beU64); // == givenU64Bytes
 ```
 
+## Usage
+You can add this library to your project using Zig's new package manager Zon.
+
+`build.zig.zon`
+```zig
+.{
+    .name = "example",
+    .version = "0.0.1",
+    .dependencies = .{
+        .byteorderutilzig = .{
+            .url = "https://github.com/HeyaGlitz/byteorder-util-zig/archive/<latest_commit_hash>.tar.gz",
+            .hash = "read below"
+        },
+    }
+}
+```
+Remove the whole `.hash` line, then run `zig build`. It'll tell you what you need to write.
+
+Add this to `build.zig`
+```zig
+exe.addModule("byteorder-util-zig", b.dependency("byteorderutilzig", .{}).module("byteorder-util-zig"));
+```
