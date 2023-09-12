@@ -5,6 +5,8 @@ pub fn build(b: *std.build.Builder) void {
 
     const optimize = b.standardOptimizeOption(.{});
 
+    const module = b.addModule("byteorder-util-zig", .{ .source_file = .{ .path = "./src/main.zig" } });
+
     const lib = b.addStaticLibrary(.{
         .name = "byteorder-util-zig",
         .root_source_file = .{ .path = "src/main.zig" },
@@ -18,6 +20,7 @@ pub fn build(b: *std.build.Builder) void {
         .target = target,
         .optimize = optimize,
     });
+    main_tests.addModule("byteorder-util-zig", module);
 
     const run_main_tests = b.addRunArtifact(main_tests);
 
